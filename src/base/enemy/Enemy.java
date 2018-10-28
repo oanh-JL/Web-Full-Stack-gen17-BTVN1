@@ -55,7 +55,6 @@ public class Enemy extends GameObject implements Physics {
     }
 
     public void takeDamage(int damage) {
-
     }
 
     @Override

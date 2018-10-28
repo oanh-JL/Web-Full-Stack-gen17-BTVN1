@@ -24,6 +24,7 @@ public class AnimationRenderer extends Renderer {
         this.frameCounter = new FrameCounter(5);
     }
 
+    //FrameCount cho tùy chỉnh thời gian delay giữa các lần render ảnh
     public AnimationRenderer(ArrayList<BufferedImage> images, int frameCount) {
         this.images = images;
         this.frameCounter = new FrameCounter(frameCount);

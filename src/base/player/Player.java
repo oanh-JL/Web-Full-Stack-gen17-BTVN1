@@ -3,13 +3,17 @@ package base.player;
 import base.*;
 import base.counter.FrameCounter;
 import base.event.KeyEventPress;
+import base.event.MouseEvent;
 import base.physics.BoxCollider;
 import base.physics.Physics;
 import base.renderer.AnimationRenderer;
 import tklibs.SpriteUtils;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
+import static java.awt.event.MouseEvent.MOUSE_CLICKED;
 
 public class Player extends GameObject implements Physics {
     FrameCounter fireCounter;
@@ -56,26 +60,19 @@ public class Player extends GameObject implements Physics {
         this.move(VX, VY);
         //fire
         boolean fireCounterRun = this.fireCounter.run();
-        if(KeyEventPress.isFirePress && fireCounterRun) {
-            this.fire();
+        if(MouseEvent.isFirePress && fireCounterRun) {
+            this.fire(0, -1);
         }
         this.position.addThis(this.velocity);
     }
 
-    public void fire() {
-//        PlayerBullet bullet = new PlayerBullet();
-//        GameCanvas.playerBullets.add(bullet);
+    public void fire(int xM, int yM) {
+
         PlayerBulletType1 bullet = GameObject.recycle(PlayerBulletType1.class);
-        PlayerBulletType1 bullet2 = GameObject.recycle(PlayerBulletType1.class);
-        PlayerBulletType1 bullet3 = GameObject.recycle(PlayerBulletType1.class);
 
-        bullet.velocity.set(0, -1);
-        bullet2.velocity.set(1, -1);
-        bullet3.velocity.set(-1, -1);
+        bullet.velocity.set(xM, yM);
 
-        bullet.position.set(this.position.x, this.position.y);        bullet.position.set(this.position.x, this.position.y);
-        bullet2.position.set(this.position.x, this.position.y);
-        bullet3.position.set(this.position.x, this.position.y);
+        bullet.position.set(this.position.x, this.position.y);
 
         this.fireCounter.reset();
     }
@@ -93,7 +90,6 @@ public class Player extends GameObject implements Physics {
     public float clamp(float number, float min, float max) {
         return number < min ? min : number > max ? max : number;
     }
-
 
     public void takeDamage(int damage) {
         this.hp -= damage;

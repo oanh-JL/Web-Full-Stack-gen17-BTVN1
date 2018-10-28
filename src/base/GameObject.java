@@ -14,6 +14,7 @@ public class GameObject {
             , Settings.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
     public static Graphics backBufferGraphics = backBuffer.createGraphics();
 
+    //Hàm tạo đối tượng và add đối tượng vào mảng
     public static <E extends GameObject> E create(Class<E> childClass) {
         try {
             GameObject newGameObject = childClass.newInstance();
@@ -25,6 +26,10 @@ public class GameObject {
     }
 
     public static <E extends GameObject> E recycle(Class<E> childClass) {
+        //Kiểm tra có Game Object thỏa mãn yêu cầu
+        //Có thì dùng lại
+        //Không có tạo mới
+        //Return Game Object
         for(GameObject go : gameObjects) {
             if(!go.isActive && go.getClass().isAssignableFrom(childClass)) {
                 go.isActive = true;
@@ -34,6 +39,7 @@ public class GameObject {
         return create(childClass);
     }
 
+    //Physics là đối tượng cần đc check va chạm
     public static <E extends GameObject> E intersect(Class<E> childClass, Physics physics) {
         for(GameObject go : gameObjects) {
             if(go.isActive && childClass.isAssignableFrom(go.getClass())
@@ -70,16 +76,6 @@ public class GameObject {
     public static void renderBackBufferToGame(Graphics g) {
         g.drawImage(backBuffer, 0, 0, null);
     }
-
-//    public static void renderAll(Graphics g) {
-//        for(GameObject go : gameObjects) {
-//            if(go.isActive) {
-//                go.render(g);
-//            }
-//        }
-//        gameObjects.addAll(newGameObjects);
-//        newGameObjects.clear();
-//    }
 
     public Renderer renderer;
     public Vector2D position;

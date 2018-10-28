@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class PlayerBullet extends GameObject implements Physics {
-    Vector2D velocity;
+    public Vector2D velocity;
     BoxCollider collider;
     int damage;
 

@@ -39,15 +39,13 @@ public class Vector2D {
      * @param y
      * @return return new vector = oldVector + passed arguments
      */
+    //Add sẽ tạo 1 vector mới rồi cộng, ko làm ảnh hưởng đến vector gốc
     public Vector2D add(float x, float y) {
         Vector2D result = new Vector2D(this.x + x, this.y + y);
         return result;
     }
 
-    public Vector2D add(Vector2D other) {
-        return this.add(other.x, other.y);
-    }
-
+    //Add thẳng vào vector gốc
     public Vector2D addThis(float x, float y) {
         this.x += x;
         this.y += y;
@@ -86,6 +84,7 @@ public class Vector2D {
     public Vector2D scale(float n) {
         return new Vector2D(this.x * n, this.y * n);
     }
+
     public Vector2D scaleThis(float n) {
         this.x *= n;
         this.y *= n;
@@ -93,7 +92,7 @@ public class Vector2D {
     }
 
     /**
-     *
+     * Tính đường chéo của 2 vector (2 điểm trên tọa độ)
      * @return vector's length
      */
     public float length() {
@@ -104,13 +103,9 @@ public class Vector2D {
         System.out.println(x + "; " + y);
     }
 
+    //Override để print ra kết quả project
     @Override
     public String toString() {
         return "(x: " + x + "; y" + y + ")";
-    }
-
-    public static void main(String[] args) {
-        Vector2D v1 = new Vector2D(1, 1);
-        System.out.println(v1);
     }
 }
