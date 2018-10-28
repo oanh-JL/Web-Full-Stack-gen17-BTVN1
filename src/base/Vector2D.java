@@ -91,6 +91,10 @@ public class Vector2D {
         return this;
     }
 
+    public Vector2D normalize() {
+        return new Vector2D(this.x/this.length(), this.y/this.length());
+    }
+
     /**
      * Tính đường chéo của 2 vector (2 điểm trên tọa độ)
      * @return vector's length

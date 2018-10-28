@@ -2,13 +2,10 @@ package game;
 
 import base.event.KeyEventPress;
 import base.Settings;
+import base.event.MouseManager;
 
 import javax.swing.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 
 public class GameWindow extends JFrame {
     GameCanvas canvas;
@@ -30,32 +27,44 @@ public class GameWindow extends JFrame {
 
     //Xử lí sự kiện ấn nút
     private void setupEventListtener() {
-        this.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
+//        this.addMouseListener(new MouseListener() {
+//            @Override
+//            public void mouseClicked(MouseManager e) {
+//
+//            }
+//
+//            @Override
+//            public void mousePressed(MouseManager e) {
+//                base.event.MouseManager.isFirePress = true;
+//                xM = e.getX();
+//                yM = e.getY();
+//            }
+//
+//            @Override
+//            public void mouseReleased(MouseManager e) {
+//                base.event.MouseManager.isFirePress = false;
+//            }
+//
+//            @Override
+//            public void mouseEntered(MouseManager e) {
+//
+//            }
+//
+//            @Override
+//            public void mouseExited(MouseManager e) {
+//
+//            }
+//        });
 
-            }
-
+        this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                base.event.MouseEvent.isFirePress = true;
-                xM = e.getX();
-                yM = e.getY();
+                MouseManager.mouseManager.mousePressed(e);
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                base.event.MouseEvent.isFirePress = false;
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
+                MouseManager.mouseManager.mouseRelease(e);
             }
         });
 
@@ -89,9 +98,6 @@ public class GameWindow extends JFrame {
                 }
                 if(e.getKeyCode() == KeyEvent.VK_D) {
                     KeyEventPress.isRightPress = false;
-                }
-                if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    KeyEventPress.isFirePress = false;
                 }
             }
         });

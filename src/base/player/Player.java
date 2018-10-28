@@ -3,23 +3,20 @@ package base.player;
 import base.*;
 import base.counter.FrameCounter;
 import base.event.KeyEventPress;
-import base.event.MouseEvent;
+import base.event.MouseManager;
 import base.physics.BoxCollider;
 import base.physics.Physics;
-import base.renderer.AnimationRenderer;
 import tklibs.SpriteUtils;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
-import static java.awt.event.MouseEvent.MOUSE_CLICKED;
 
 public class Player extends GameObject implements Physics {
     FrameCounter fireCounter;
     BoxCollider collider;
     int hp;
     Vector2D velocity;
+    Vector2D bulletVelocity;
 
     public Player() {
         super();
@@ -32,6 +29,7 @@ public class Player extends GameObject implements Physics {
                 "assets/images/players/straight/5.png",
                 "assets/images/players/straight/6.png"
         );
+        this.bulletVelocity = new Vector2D();
         this.renderer = new PlayerAnimator();
         this.position = new Vector2D(Settings.START_PLAYER_POSITION_X
                 , Settings.START_PLAYER_POSITION_Y);
@@ -60,17 +58,18 @@ public class Player extends GameObject implements Physics {
         this.move(VX, VY);
         //fire
         boolean fireCounterRun = this.fireCounter.run();
-        if(MouseEvent.isFirePress && fireCounterRun) {
-            this.fire(0, -1);
+        if(MouseManager.mouseManager.isPressed && fireCounterRun) {
+            bulletVelocity.set(MouseManager.mouseManager.position.x - this.position.x, MouseManager.mouseManager.position.y - this.position.y );
+            this.fire(bulletVelocity.normalize().scaleThis(3));
         }
         this.position.addThis(this.velocity);
     }
 
-    public void fire(int xM, int yM) {
+    public void fire(Vector2D velocity) {
 
         PlayerBulletType1 bullet = GameObject.recycle(PlayerBulletType1.class);
 
-        bullet.velocity.set(xM, yM);
+        bullet.velocity.set(velocity);
 
         bullet.position.set(this.position.x, this.position.y);
 
