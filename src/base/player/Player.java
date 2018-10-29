@@ -20,21 +20,12 @@ public class Player extends GameObject implements Physics {
 
     public Player() {
         super();
-        ArrayList<BufferedImage> images = SpriteUtils.loadImages(
-                "assets/images/players/straight/0.png",
-                "assets/images/players/straight/1.png",
-                "assets/images/players/straight/2.png",
-                "assets/images/players/straight/3.png",
-                "assets/images/players/straight/4.png",
-                "assets/images/players/straight/5.png",
-                "assets/images/players/straight/6.png"
-        );
         this.bulletVelocity = new Vector2D();
         this.renderer = new PlayerAnimator();
         this.position = new Vector2D(Settings.START_PLAYER_POSITION_X
                 , Settings.START_PLAYER_POSITION_Y);
         this.fireCounter = new FrameCounter(10);
-        this.collider = new BoxCollider(32, 48);
+        this.collider = new BoxCollider(30, 69);
         this.hp = 20;
         this.velocity = new Vector2D(0, 0);
     }
@@ -102,4 +93,5 @@ public class Player extends GameObject implements Physics {
     public BoxCollider getBoxCollider() {
         return this.collider;
     }
+
 }
