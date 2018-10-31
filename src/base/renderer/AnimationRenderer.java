@@ -2,6 +2,7 @@ package base.renderer;
 
 import base.GameObject;
 import base.counter.FrameCounter;
+import base.Explosion;
 import tklibs.SpriteUtils;
 
 import java.awt.*;
@@ -12,22 +13,28 @@ public class AnimationRenderer extends Renderer {
     ArrayList<BufferedImage> images;
     int currentImage = 0;
     FrameCounter frameCounter;
+    boolean isOnce;
 
     public AnimationRenderer(String ...urls) {
-        ArrayList<BufferedImage> images = SpriteUtils.loadImages(urls);
-        this.images = images;
-        this.frameCounter = new FrameCounter(5);
+        this(SpriteUtils.loadImages(urls), 5, false);
+    }
+
+    public AnimationRenderer(int frameCount, boolean isOnce, String ...urls) {
+        this(SpriteUtils.loadImages(urls), frameCount, isOnce);
     }
 
     public AnimationRenderer(ArrayList<BufferedImage> images) {
-        this.images = images;
-        this.frameCounter = new FrameCounter(5);
+        this(images, 5, false);
     }
 
-    //FrameCount cho tùy chỉnh thời gian delay giữa các lần render ảnh
     public AnimationRenderer(ArrayList<BufferedImage> images, int frameCount) {
+        this(images, frameCount, false);
+    }
+
+    public AnimationRenderer(ArrayList<BufferedImage> images, int frameCount, boolean isOnce) {
         this.images = images;
         this.frameCounter = new FrameCounter(frameCount);
+        this.isOnce = isOnce;
     }
 
     @Override
@@ -43,7 +50,11 @@ public class AnimationRenderer extends Renderer {
                 if(currentImage >= images.size() - 1) {
                     currentImage = 0;
                 }
-                this.frameCounter.reset();
+                if(this.isOnce) {
+                    master.destroy();
+                } else {
+                    this.frameCounter.reset();
+                }
             }
         }
     }

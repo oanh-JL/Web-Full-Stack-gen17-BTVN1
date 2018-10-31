@@ -16,7 +16,7 @@ public class EnemyBullet extends GameObject implements Physics {
         this.renderer = new SingleImageRenderer(SpriteUtils.loadImage("assets/images/enemy-bullets/0.png"));
         this.position = new Vector2D(0, 0);
         this.collider = new BoxCollider(12, 20);
-        this.velocity = new Vector2D(0, 1);
+        this.velocity = new Vector2D(0, 5);
         this.damage = 4;
     }
 

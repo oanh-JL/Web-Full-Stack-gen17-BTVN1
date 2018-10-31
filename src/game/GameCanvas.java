@@ -2,6 +2,7 @@ package game;
 
 import base.*;
 import base.enemy.Enemy;
+import base.enemy.EnemySummoner;
 import base.enemy.EnemyType1;
 import base.player.Player;
 
@@ -17,6 +18,7 @@ public class GameCanvas extends JPanel {
         this.background = GameObject.recycle(Background.class); //Background
         this.player = GameObject.recycle(Player.class); //Player
         EnemyType1 enemy = GameObject.recycle(EnemyType1.class); //Enemy
+        EnemySummoner enemySummoner = GameObject.recycle(EnemySummoner.class); //Summon Enemy
     }
 
     //Run: hàm để Update even khi có thay đổi về số liệu  (x += 1)

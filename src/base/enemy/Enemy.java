@@ -5,6 +5,7 @@ import base.action.Action;
 import base.action.ActionRepeat;
 import base.action.ActionSequence;
 import base.action.ActionWait;
+import base.counter.FrameCounter;
 import base.physics.BoxCollider;
 import base.physics.Physics;
 import base.renderer.AnimationRenderer;
@@ -15,12 +16,16 @@ import java.util.ArrayList;
 
 public class Enemy extends GameObject implements Physics {
     BoxCollider collider;
-    Action action;
+    Action actionFire;
+    Action actionMove;
 
     public Enemy() {
         super();
-        this.position = new Vector2D(200, 100);
-
+        this.renderer = new AnimationRenderer(
+                "assets/images/enemy-main/00.png"
+        );
+        this.position = new Vector2D();
+        this.collider = new BoxCollider(30, 51);
         this.defineAction();
     }
 
@@ -38,23 +43,45 @@ public class Enemy extends GameObject implements Physics {
                 this.isDone = false;
             }
         };
-        ActionSequence actionSequence = new ActionSequence(actionWait, actionFire);
-        ActionRepeat actionRepeat = new ActionRepeat(actionSequence);
 
-        this.action = actionRepeat;
+        Action actionMove = new Action() {
+            @Override
+            public void run(GameObject master) {
+                move();
+                this.isDone = true;
+            }
+
+            @Override
+            public void reset() {
+                this.isDone = false;
+            }
+        };
+        ActionSequence actionSequenceFire = new ActionSequence(actionWait, actionFire);
+        ActionRepeat actionRepeatFire = new ActionRepeat(actionSequenceFire);
+
+        ActionSequence actionSequenceMove = new ActionSequence(actionMove);
+        ActionRepeat actionRepeatMove = new ActionRepeat(actionSequenceMove);
+
+        this.actionFire = actionRepeatFire;
+        this.actionMove = actionRepeatMove;
     }
 
     @Override
     public void run() {
-        this.action.run(this);
+        this.actionFire.run(this);
+        this.actionMove.run(this);
     }
 
     public void fire() {
         EnemyBullet bullet = GameObject.recycle(EnemyBullet.class);
-        bullet.position.set(this.position.x, this.position.y + 5);
+        bullet.position.set(this.position.x + 5, this.position.y + 20);
     }
 
     public void takeDamage(int damage) {
+    }
+
+    public void move() {
+        this.position.addThis(0, 5);
     }
 
     @Override

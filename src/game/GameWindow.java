@@ -27,34 +27,6 @@ public class GameWindow extends JFrame {
 
     //Xử lí sự kiện ấn nút
     private void setupEventListtener() {
-//        this.addMouseListener(new MouseListener() {
-//            @Override
-//            public void mouseClicked(MouseManager e) {
-//
-//            }
-//
-//            @Override
-//            public void mousePressed(MouseManager e) {
-//                base.event.MouseManager.isFirePress = true;
-//                xM = e.getX();
-//                yM = e.getY();
-//            }
-//
-//            @Override
-//            public void mouseReleased(MouseManager e) {
-//                base.event.MouseManager.isFirePress = false;
-//            }
-//
-//            @Override
-//            public void mouseEntered(MouseManager e) {
-//
-//            }
-//
-//            @Override
-//            public void mouseExited(MouseManager e) {
-//
-//            }
-//        });
 
         this.addMouseListener(new MouseAdapter() {
             @Override

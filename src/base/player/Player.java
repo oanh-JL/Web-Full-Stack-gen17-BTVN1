@@ -53,6 +53,19 @@ public class Player extends GameObject implements Physics {
             bulletVelocity.set(MouseManager.mouseManager.position.x - this.position.x, MouseManager.mouseManager.position.y - this.position.y );
             this.fire(bulletVelocity.normalize().scaleThis(3));
         }
+
+        if (this.position.x <= 120){
+            this.position.x = 120;
+        }
+        if (this.position.x >= 400){
+            this.position.x = 400;
+        }
+        if (this.position.y >= 520){
+            this.position.y = 520;
+        }
+        if (this.position.y <= 50){
+            this.position.y = 50;
+        }
         this.position.addThis(this.velocity);
     }
 

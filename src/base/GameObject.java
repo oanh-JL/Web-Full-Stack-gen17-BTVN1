@@ -89,6 +89,8 @@ public class GameObject {
 
     public void destroy() {
         this.isActive = false;
+        Explosion explosion = GameObject.recycle(Explosion.class);
+        explosion.position.set(this.position);
     }
 
     public void run() {
