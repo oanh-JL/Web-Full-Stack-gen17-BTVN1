@@ -1,24 +1,24 @@
 package game;
 
 import base.*;
-import base.enemy.Enemy;
 import base.enemy.EnemySummoner;
-import base.enemy.EnemyType1;
 import base.player.Player;
+import base.scene.SceneManager;
+import base.scene.welcomescene.WelcomeScene;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GameCanvas extends JPanel {
-    Background background;
-    Player player;
+//    Background background;
+//    Player player;
 
     //Hàm khởi tạo GameCanvas
     public GameCanvas() {
-        this.background = GameObject.recycle(Background.class); //Background
-        this.player = GameObject.recycle(Player.class); //Player
-        EnemyType1 enemy = GameObject.recycle(EnemyType1.class); //Enemy
-        EnemySummoner enemySummoner = GameObject.recycle(EnemySummoner.class); //Summon Enemy
+//        this.background = GameObject.recycle(Background.class); //Background
+//        this.player = GameObject.recycle(Player.class); //Player
+//        EnemySummoner enemySummoner = GameObject.recycle(EnemySummoner.class); //Summon Enemy
+        SceneManager.signNewScene(new WelcomeScene());
     }
 
     //Run: hàm để Update even khi có thay đổi về số liệu  (x += 1)

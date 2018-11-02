@@ -23,7 +23,7 @@ public class EnemySummoner extends GameObject {
     }
 
     public void defineAction() {
-        ActionWait actionWait = new ActionWait(100);
+        ActionWait actionWait = new ActionWait(40);
         Action actionSpawn = new Action() {
             @Override
             public void run(GameObject master) {
@@ -50,6 +50,6 @@ public class EnemySummoner extends GameObject {
 
     public void spawn(){
         EnemyType1 enemy = GameObject.recycle(EnemyType1.class);
-        enemy.position.set(this.position.x - new Random().nextInt(200), this.position.y);
+        enemy.position.set(this.position.x +100- new Random().nextInt(150), this.position.y);
     }
 }

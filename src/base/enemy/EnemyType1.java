@@ -1,5 +1,7 @@
 package base.enemy;
 
+import base.Explosion;
+import base.GameObject;
 import base.physics.BoxCollider;
 import base.renderer.AnimationRenderer;
 import base.renderer.SingleImageRenderer;
@@ -20,16 +22,7 @@ public class EnemyType1 extends Enemy {
                 "assets/images/enemy-main/05.png",
                 "assets/images/enemy-main/06.png",
                 "assets/images/enemy-main/07.png",
-                "assets/images/enemy-main/08.png",
-                "assets/images/enemy-main/010.png",
-                "assets/images/enemy-main/011.png",
-                "assets/images/enemy-main/012.png",
-                "assets/images/enemy-main/013.png",
-                "assets/images/enemy-main/015.png",
-                "assets/images/enemy-main/016.png",
-                "assets/images/enemy-main/018.png",
-                "assets/images/enemy-main/020.png",
-                "assets/images/enemy-main/021.png"
+                "assets/images/enemy-main/08.png"
         );
         Random rand = new Random();
         int randomIndex = rand.nextInt(listEnemies.size());
@@ -43,5 +36,11 @@ public class EnemyType1 extends Enemy {
         if(damage > 0) {
             this.destroy();
         }
+    }
+    @Override
+    public void destroy() {
+        super.destroy();
+        Explosion explosion = GameObject.recycle(Explosion.class);
+        explosion.position.set(this.position);
     }
 }

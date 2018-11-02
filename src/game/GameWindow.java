@@ -5,6 +5,7 @@ import base.Settings;
 import base.event.MouseManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class GameWindow extends JFrame {
@@ -17,12 +18,16 @@ public class GameWindow extends JFrame {
         this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setupEventListtener();
+        // init game
+        this.canvas = new GameCanvas();
+        this.canvas.setPreferredSize(new Dimension(Settings.SCREEN_WIDHT
+                , Settings.SCREEN_HEIGHT));
 
         //init game
-        this.canvas = new GameCanvas();
         this.add(canvas);
 
         this.setVisible(true);
+        this.pack();
     }
 
     //Xử lí sự kiện ấn nút
@@ -43,6 +48,8 @@ public class GameWindow extends JFrame {
         this.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
+                KeyEventPress.isAnyKeyPress=true;
+
                 if(e.getKeyCode() == KeyEvent.VK_W) {
                     KeyEventPress.isUpPress = true;
                 }
@@ -55,10 +62,15 @@ public class GameWindow extends JFrame {
                 if(e.getKeyCode() == KeyEvent.VK_D) {
                     KeyEventPress.isRightPress = true;
                 }
+                if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    KeyEventPress.isSpacePress = true;
+                }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
+                KeyEventPress.isAnyKeyPress=false;
+
                 if(e.getKeyCode() == KeyEvent.VK_W) {
                     KeyEventPress.isUpPress = false;
                 }
@@ -70,6 +82,9 @@ public class GameWindow extends JFrame {
                 }
                 if(e.getKeyCode() == KeyEvent.VK_D) {
                     KeyEventPress.isRightPress = false;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    KeyEventPress.isSpacePress = false;
                 }
             }
         });

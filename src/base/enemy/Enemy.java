@@ -21,11 +21,7 @@ public class Enemy extends GameObject implements Physics {
 
     public Enemy() {
         super();
-        this.renderer = new AnimationRenderer(
-                "assets/images/enemy-main/00.png"
-        );
-        this.position = new Vector2D();
-        this.collider = new BoxCollider(30, 51);
+        //this.position = new Vector2D(200,100);
         this.defineAction();
     }
 

@@ -14,10 +14,10 @@ public class EnemyBullet extends GameObject implements Physics {
 
     public EnemyBullet() {
         this.renderer = new SingleImageRenderer(SpriteUtils.loadImage("assets/images/enemy-bullets/0.png"));
-        this.position = new Vector2D(0, 0);
+        //this.position = new Vector2D(0, 0);
         this.collider = new BoxCollider(12, 20);
         this.velocity = new Vector2D(0, 5);
-        this.damage = 4;
+        this.damage = 1;
     }
 
     @Override
@@ -29,7 +29,12 @@ public class EnemyBullet extends GameObject implements Physics {
             this.destroy();
         }
     }
-
+    @Override
+    public void destroy() {
+        super.destroy();
+        Explosion explosion = GameObject.recycle(Explosion.class);
+        explosion.position.set(this.position.x,this.position.y);
+    }
     @Override
     public BoxCollider getBoxCollider() {
         return this.collider;

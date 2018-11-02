@@ -6,6 +6,8 @@ import base.event.KeyEventPress;
 import base.event.MouseManager;
 import base.physics.BoxCollider;
 import base.physics.Physics;
+import base.scene.SceneManager;
+import base.scene.welcomescene.WelcomeScene;
 import tklibs.SpriteUtils;
 
 import java.awt.image.BufferedImage;
@@ -53,12 +55,15 @@ public class Player extends GameObject implements Physics {
             bulletVelocity.set(MouseManager.mouseManager.position.x - this.position.x, MouseManager.mouseManager.position.y - this.position.y );
             this.fire(bulletVelocity.normalize().scaleThis(3));
         }
-
-        if (this.position.x <= 120){
-            this.position.x = 120;
+        if (KeyEventPress.isSpacePress && fireCounterRun){
+            this.fireSpace();
         }
-        if (this.position.x >= 400){
-            this.position.x = 400;
+
+        if (this.position.x <= 85){
+            this.position.x = 85;
+        }
+        if (this.position.x >= 415){
+            this.position.x = 415;
         }
         if (this.position.y >= 520){
             this.position.y = 520;
@@ -68,7 +73,12 @@ public class Player extends GameObject implements Physics {
         }
         this.position.addThis(this.velocity);
     }
-
+    public void fireSpace(){
+        PlayerBulletType1 bulletType1 = GameObject.recycle(PlayerBulletType1.class);
+        bulletType1.position.set(this.position.x,this.position.y);
+        bulletType1.velocity.set(0,-3);
+        this.fireCounter.reset();
+    }
     public void fire(Vector2D velocity) {
 
         PlayerBulletType1 bullet = GameObject.recycle(PlayerBulletType1.class);
@@ -99,7 +109,16 @@ public class Player extends GameObject implements Physics {
         if(this.hp <= 0) {
             this.destroy();
             hp = 0;
+            SceneManager.signNewScene(new WelcomeScene());
+
         }
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        Explosion explosion = GameObject.recycle(Explosion.class);
+        explosion.position.set(this.position);
     }
 
     @Override

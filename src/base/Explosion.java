@@ -8,7 +8,7 @@ public class Explosion extends GameObject {
     public Explosion() {
         this.position = new Vector2D();
         this.renderer = new AnimationRenderer(
-                5, true,
+                15, true,
                 "assets/images/explosion/explosion1.png",
                 "assets/images/explosion/explosion2.png",
                 "assets/images/explosion/explosion3.png",
