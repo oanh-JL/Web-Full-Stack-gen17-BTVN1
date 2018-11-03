@@ -1,5 +1,7 @@
 package base.player;
 
+import base.Explosion;
+import base.enemy.EnemyBoss;
 import base.enemy.EnemyBullet;
 import base.physics.BoxCollider;
 import base.GameObject;
@@ -7,6 +9,8 @@ import base.physics.Physics;
 import base.Vector2D;
 import base.enemy.Enemy;
 import base.renderer.AnimationRenderer;
+import base.tank.Tank;
+import base.tank.TankSummon;
 import tklibs.SpriteUtils;
 
 import java.awt.image.BufferedImage;
@@ -26,6 +30,12 @@ public class PlayerBullet extends GameObject implements Physics {
     public void run() {
         Enemy enemy = GameObject.intersect(Enemy.class, this);
         EnemyBullet enemyBullet = GameObject.intersect(EnemyBullet.class,this);
+        Tank tank=GameObject.intersect(Tank.class,this);
+        EnemyBoss enemyBoss=GameObject.intersect(EnemyBoss.class, this);
+        if(enemyBoss!=null){
+            this.destroy();
+
+        }
        if (enemyBullet!=null){
             this.destroy();
             enemyBullet.destroy();
@@ -35,6 +45,10 @@ public class PlayerBullet extends GameObject implements Physics {
             this.hitEnemy();
             return;
         }
+        if(tank!=null){
+            this.destroy();
+            tank.destroy();
+        }
         if(this.position.y < 0) {
             this.destroy();
             return;
@@ -43,6 +57,13 @@ public class PlayerBullet extends GameObject implements Physics {
     }
 
     public void hitEnemy() {
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        Explosion explosion = GameObject.recycle(Explosion.class);
+        explosion.position.set(this.position.x,this.position.y);
     }
 
     @Override

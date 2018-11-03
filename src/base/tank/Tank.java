@@ -6,8 +6,6 @@ import base.action.Action;
 import base.action.ActionRepeat;
 import base.action.ActionSequence;
 import base.action.ActionWait;
-import base.counter.FrameCounter;
-import base.enemy.EnemyBullet;
 import base.physics.BoxCollider;
 import base.physics.Physics;
 
@@ -21,7 +19,7 @@ public class Tank extends GameObject implements Physics {
     }
 
     private void defineAction() {
-        ActionWait actionWait = new ActionWait(50);
+        ActionWait actionWait = new ActionWait(150);
         Action actionFire = new Action() {
             @Override
             public void run(GameObject master) {

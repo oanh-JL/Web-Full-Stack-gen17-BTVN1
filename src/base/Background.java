@@ -3,6 +3,7 @@ package base;
 import base.event.KeyEventPress;
 import base.renderer.SingleImageRenderer;
 import base.scene.SceneManager;
+import base.scene.SceneStage1;
 import base.scene.SceneStage2;
 import tklibs.SpriteUtils;
 
@@ -24,9 +25,6 @@ public class Background extends GameObject {
     public void run() {
         if (this.position.y >= 0) {
             //isEnd = true;
-            if (KeyEventPress.isAnyKeyPress) {
-                SceneManager.signNewScene(new SceneStage2());
-            }
             return;
         } else {
 

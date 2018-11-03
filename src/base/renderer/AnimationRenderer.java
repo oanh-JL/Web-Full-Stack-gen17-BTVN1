@@ -36,26 +36,26 @@ public class AnimationRenderer extends Renderer {
         this.frameCounter = new FrameCounter(frameCount);
         this.isOnce = isOnce;
     }
-
     @Override
     public void render(Graphics g, GameObject master) {
-        if (images.size() > 0) {
+        if(images.size() > 0) {
             BufferedImage image = images.get(currentImage);
             double x = master.position.x - image.getWidth() * master.anchor.x;
             double y = master.position.y - image.getHeight() * master.anchor.y;
-            g.drawImage(image, (int) x, (int) y, null);
+            g.drawImage(image, (int)x, (int)y, null);
 
-            if (this.frameCounter.run()) {
+            if(this.frameCounter.run()) {
                 currentImage++;
-                if (currentImage >= images.size() - 1) {
+                if(this.isOnce && this.currentImage == this.images.size() - 1) {
+                    master.destroy();
+                }
+                if(currentImage >= images.size() - 1) {
                     currentImage = 0;
                 }
-                if (this.isOnce) {
-                    master.destroy();
-                } else {
-                    this.frameCounter.reset();
-                }
+                this.frameCounter.reset();
             }
         }
     }
+
+
 }

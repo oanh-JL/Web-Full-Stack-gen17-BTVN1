@@ -12,7 +12,7 @@ import java.util.Random;
 public class StoneSummon extends GameObject {
     Action action;
     //ArrayList<Stone> arr = new ArrayList<>();
-    int i = 0;
+
     public boolean isEnd;
 
     //FrameCounter frameCounter = new FrameCounter(10);

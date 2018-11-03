@@ -1,18 +1,21 @@
 package base.directionbullet;
 
-import base.*;
+import base.GameObject;
 import base.enemy.Enemy;
+import base.enemy.EnemyBossBullet;
+import base.enemy.EnemyBullet;
 import base.physics.BoxCollider;
 import base.physics.Physics;
+import base.player.Player;
 import base.player.PlayerBullet;
 
-public class LeftBullets extends PlayerBullet implements Physics {
+public class LeftBullets extends EnemyBossBullet implements Physics {
     @Override
     public void run() {
-        Enemy enemy = GameObject.intersect(Enemy.class, this);
+       Player player = GameObject.intersect(Player.class, this);
 
-        if(enemy != null){
-            enemy.destroy();
+        if(player != null){
+            player.destroy();
             this.destroy();
             return;
         }

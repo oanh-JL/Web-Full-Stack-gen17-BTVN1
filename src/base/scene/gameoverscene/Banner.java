@@ -5,6 +5,7 @@ import base.Settings;
 import base.event.KeyEventPress;
 import base.renderer.SingleImageRenderer;
 import base.scene.SceneManager;
+import base.scene.SceneStage;
 import base.scene.SceneStage1;
 import tklibs.SpriteUtils;
 
@@ -19,7 +20,7 @@ public class Banner extends GameObject {
     @Override
     public void run() {
         if (KeyEventPress.isAnyKeyPress){
-            SceneManager.signNewScene(new SceneStage1());
+            SceneManager.signNewScene(new SceneStage());
         }
     }
 }

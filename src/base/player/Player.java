@@ -9,8 +9,10 @@ import base.physics.Physics;
 import base.scene.SceneManager;
 import base.scene.SceneStage1;
 import base.scene.SceneStage2;
+import base.scene.gameoverscene.GameOverScene;
 import base.scene.welcomescene.WelcomeScene;
 import base.stone.StoneType1;
+import base.tank.TankType1;
 import tklibs.SpriteUtils;
 
 import java.awt.image.BufferedImage;
@@ -119,7 +121,7 @@ public class Player extends GameObject implements Physics {
         if(this.hp <= 0) {
             this.destroy();
             hp = 0;
-            SceneManager.signNewScene(new WelcomeScene());
+            SceneManager.signNewScene(new GameOverScene());
 
         }
     }
