@@ -53,6 +53,6 @@ public class EnemySummoner extends GameObject {
 
     public void spawn(){
         EnemyType1 enemy = GameObject.recycle(EnemyType1.class);
-        enemy.position.set(this.position.x +200- new Random().nextInt(300), this.position.y);
+        enemy.position.set(this.position.x +100- new Random().nextInt(200), this.position.y);
     }
 }

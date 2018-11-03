@@ -1,5 +1,6 @@
 package base;
 
+import base.event.KeyEventPress;
 import base.renderer.SingleImageRenderer;
 import base.scene.SceneManager;
 import base.scene.SceneStage2;
@@ -9,6 +10,7 @@ import java.awt.image.BufferedImage;
 
 public class Background extends GameObject {
     public boolean isEnd = false;
+
     public Background() {
         super();
         BufferedImage image = SpriteUtils.loadImage("assets/images/background/0.png");
@@ -22,14 +24,17 @@ public class Background extends GameObject {
     public void run() {
         if (this.position.y >= 0) {
             //isEnd = true;
-            SceneManager.signNewScene( new SceneStage2());
+            if (KeyEventPress.isAnyKeyPress) {
+                SceneManager.signNewScene(new SceneStage2());
+            }
             return;
         } else {
-            if (this.position.y > -Settings.SCREEN_HEIGHT -200) {
+
+            if (this.position.y > -Settings.SCREEN_HEIGHT - 600) {
                 isEnd = true;
             }
 
-            this.position.y += 7/*speed*/;
+            this.position.y += 3/*speed*/;
         }
         //System.out.println(isEnd);
     }

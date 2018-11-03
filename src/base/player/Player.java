@@ -62,11 +62,11 @@ public class Player extends GameObject implements Physics {
             this.fireSpace();
         }
 
-        if (this.position.x <= 85){
-            this.position.x = 85;
+        if (this.position.x <= 90){
+            this.position.x = 90;
         }
-        if (this.position.x >= 415){
-            this.position.x = 415;
+        if (this.position.x >= 405){
+            this.position.x = 405;
         }
         if (this.position.y >= 520){
             this.position.y = 520;
@@ -86,9 +86,7 @@ public class Player extends GameObject implements Physics {
         PlayerBulletType1 bulletType1 = GameObject.recycle(PlayerBulletType1.class);
         PlayerBulletType1 bulletType2 = GameObject.recycle(PlayerBulletType1.class);
         bulletType1.position.set(this.position.x,this.position.y);
-        bulletType2.position.set(this.position.x,this.position.y);
         bulletType1.velocity.set(0,-3);
-        bulletType2.velocity.set(3,-3);
         this.fireCounter.reset();
     }
     public void fire(Vector2D velocity) {
