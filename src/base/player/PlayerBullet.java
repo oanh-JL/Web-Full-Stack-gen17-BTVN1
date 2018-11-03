@@ -33,6 +33,7 @@ public class PlayerBullet extends GameObject implements Physics {
         Tank tank=GameObject.intersect(Tank.class,this);
         EnemyBoss enemyBoss=GameObject.intersect(EnemyBoss.class, this);
         if(enemyBoss!=null){
+           enemyBoss.takeDamage(this.damage);
             this.destroy();
 
         }
