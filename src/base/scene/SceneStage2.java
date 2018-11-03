@@ -30,7 +30,7 @@ public class SceneStage2 extends Scene {
 
     @Override
     public void run() {
-
+        stoneSummon.isEnd = backgroundStone.isEnd;
     }
 //
 //    @Override

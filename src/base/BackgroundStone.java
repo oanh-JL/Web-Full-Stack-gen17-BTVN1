@@ -1,6 +1,11 @@
 package base;
 
+import base.event.KeyEventPress;
 import base.renderer.SingleImageRenderer;
+import base.scene.Scene;
+import base.scene.SceneManager;
+import base.scene.SceneStage1;
+import base.scene.SceneStage2;
 import tklibs.SpriteUtils;
 
 import java.awt.image.BufferedImage;
@@ -25,9 +30,7 @@ public class BackgroundStone extends GameObject {
             if (this.position.y > -Settings.SCREEN_HEIGHT -200) {
                 isEnd = true;
             }
-            if (this.position.y>-Settings.SCREEN_HEIGHT-100){
-//                SceneManager.signNewScene();
-            }
+
             this.position.y += 3/*speed*/;
         }
         //System.out.println(isEnd);
