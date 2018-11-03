@@ -13,4 +13,9 @@ public class WelcomeScene extends Scene {
     public void init() {
         GameObject banner = GameObject.recycle(Banner.class);
     }
+
+    @Override
+    public void run() {
+
+    }
 }

@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 public class PlayerBullet extends GameObject implements Physics {
     public Vector2D velocity;
-    BoxCollider collider;
     int damage;
 
     public PlayerBullet() {

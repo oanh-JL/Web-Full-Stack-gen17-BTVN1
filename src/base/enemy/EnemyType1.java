@@ -3,6 +3,7 @@ package base.enemy;
 import base.Explosion;
 import base.GameObject;
 import base.physics.BoxCollider;
+import base.player.Player;
 import base.renderer.AnimationRenderer;
 import base.renderer.SingleImageRenderer;
 
@@ -17,7 +18,6 @@ public class EnemyType1 extends Enemy {
                 "assets/images/enemy-main/00.png",
                 "assets/images/enemy-main/01.png",
                 "assets/images/enemy-main/02.png",
-                "assets/images/enemy-main/03.png",
                 "assets/images/enemy-main/04.png",
                 "assets/images/enemy-main/05.png",
                 "assets/images/enemy-main/06.png",
@@ -36,6 +36,7 @@ public class EnemyType1 extends Enemy {
         if(damage > 0) {
             this.destroy();
         }
+
     }
     @Override
     public void destroy() {

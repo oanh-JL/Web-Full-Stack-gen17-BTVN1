@@ -1,5 +1,6 @@
 package base;
 
+import base.physics.BoxCollider;
 import base.physics.Physics;
 import base.renderer.Renderer;
 import base.scene.SceneManager;
@@ -61,9 +62,12 @@ public class GameObject {
                 go.run();
             }
         }
+
         gameObjects.addAll(newGameObjects);
         newGameObjects.clear();
         SceneManager.changeSceneIfNeeded();
+        SceneManager.currentScene.run();
+
     }
 
     public static void renderAllToBackBuffer() {
@@ -75,7 +79,9 @@ public class GameObject {
             }
         }
     }
+    public void setPosition(){
 
+    }
     public static void renderBackBufferToGame(Graphics g) {
         g.drawImage(backBuffer, 0, 0, null);
     }
@@ -84,10 +90,13 @@ public class GameObject {
     public Vector2D position;
     public boolean isActive;
     public Vector2D anchor;
+    public BoxCollider collider;
 
     public GameObject() {
         this.isActive = true;
-        this.anchor = new Vector2D(0.5f, 0.5f);
+        //this.anchor = new Vector2D(0.5f, 0.5f);
+        this.anchor = new Vector2D(0, 0);
+
         this.position = new Vector2D(0, 0);
     }
 
@@ -102,6 +111,10 @@ public class GameObject {
     public void render(Graphics g) {
         if(this.renderer != null) {
             this.renderer.render(g, this);
+        }
+
+        if (this.collider != null) {
+            collider.render(g);
         }
     }
 

@@ -8,6 +8,7 @@ import base.action.ActionWait;
 import base.counter.FrameCounter;
 import base.physics.BoxCollider;
 import base.physics.Physics;
+import base.player.Player;
 import base.renderer.AnimationRenderer;
 import tklibs.SpriteUtils;
 
@@ -66,6 +67,10 @@ public class Enemy extends GameObject implements Physics {
     public void run() {
         this.actionFire.run(this);
         this.actionMove.run(this);
+        if (this.position.y>600){
+            this.destroy();
+            return;
+        }
     }
 
     public void fire() {
@@ -74,10 +79,11 @@ public class Enemy extends GameObject implements Physics {
     }
 
     public void takeDamage(int damage) {
+
     }
 
     public void move() {
-        this.position.addThis(0, 5);
+        this.position.addThis(0, 4);
     }
 
     @Override

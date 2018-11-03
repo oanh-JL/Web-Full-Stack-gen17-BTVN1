@@ -15,6 +15,7 @@ import java.util.Random;
 
 public class EnemySummoner extends GameObject {
     Action actionSpawn;
+    public boolean isEnd;
 
     public EnemySummoner() {
         super();
@@ -23,7 +24,7 @@ public class EnemySummoner extends GameObject {
     }
 
     public void defineAction() {
-        ActionWait actionWait = new ActionWait(40);
+        ActionWait actionWait = new ActionWait(60);
         Action actionSpawn = new Action() {
             @Override
             public void run(GameObject master) {
@@ -45,11 +46,13 @@ public class EnemySummoner extends GameObject {
 
     @Override
     public void run() {
-        this.actionSpawn.run(this);
+        if (!isEnd) {
+            this.actionSpawn.run(this);
+        }
     }
 
     public void spawn(){
         EnemyType1 enemy = GameObject.recycle(EnemyType1.class);
-        enemy.position.set(this.position.x +100- new Random().nextInt(150), this.position.y);
+        enemy.position.set(this.position.x +200- new Random().nextInt(300), this.position.y);
     }
 }

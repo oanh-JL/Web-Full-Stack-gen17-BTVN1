@@ -4,6 +4,7 @@ import base.*;
 import base.enemy.EnemySummoner;
 import base.player.Player;
 import base.scene.SceneManager;
+import base.scene.SceneStage2;
 import base.scene.welcomescene.WelcomeScene;
 
 import javax.swing.*;
@@ -24,6 +25,7 @@ public class GameCanvas extends JPanel {
     //Run: hàm để Update even khi có thay đổi về số liệu  (x += 1)
     //Chạy logic
     public void run() {
+        //sceneStage2.run();
         //Run all: chạy tất cả object được add vào list static gameObjects
         GameObject.runAll();
     }

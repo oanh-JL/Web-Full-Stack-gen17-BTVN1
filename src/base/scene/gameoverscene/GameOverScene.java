@@ -14,4 +14,9 @@ public class GameOverScene extends Scene {
 
         GameObject.recycle(Banner.class);
     }
+
+    @Override
+    public void run() {
+
+    }
 }

@@ -3,9 +3,13 @@ package base.physics;
 import base.GameObject;
 import base.player.PlayerBullet;
 
-public class BoxCollider {
+import java.awt.*;
+
+public class BoxCollider extends GameObject{
     public int width;
     public int height;
+    public int L;
+    public int T;
 
     public BoxCollider(int width, int height) {
         this.width = width;
@@ -33,6 +37,8 @@ public class BoxCollider {
         //oB == other BoxCollider
         GameObject oM = (GameObject) other;
         BoxCollider oB = other.getBoxCollider();
+//        L = left(master) - this.width/2;
+//        T = top(master) - this.height/2;
 
         boolean yIntersect = (this.top(master) >= oB.top(oM) && this.top(master) < oB.bot(oM))
                 || (this.bot(master) >= oB.top(oM) && this.bot(master) < oB.bot(oM));

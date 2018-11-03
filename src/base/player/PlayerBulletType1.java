@@ -19,5 +19,8 @@ public class PlayerBulletType1 extends PlayerBullet {
         this.destroy();
     }
 
-
+    @Override
+    public BoxCollider getBoxCollider() {
+        return super.getBoxCollider();
+    }
 }
