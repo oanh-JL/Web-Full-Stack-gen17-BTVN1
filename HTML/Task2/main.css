@@ -1,0 +1,73 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: antiquewhite;
+  
+}
+
+/* .avatar{
+	height: 300px;
+	width: 300px;
+	border-radius: 50%;
+	overflow: hidden;
+    position: relative;
+    border: white;
+    
+}
+img {
+	height: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+} */
+img.avatar{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin-left: 25mm;
+
+}
+.left_side{
+    width: 500px;
+    height: 1000px;
+    background-color: #B0C5BC;
+    border: 3px solid black;
+    display:block;
+    
+}
+.name{
+    color:#121713;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+hr{
+    width: 20%;
+    border: 1px solid white;
+    margin-left: 210px;
+}
+.intro_text{
+    margin-left: 5mm;
+    color: #121713;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+.mid{
+    text-align: center;
+}
+.trav{
+   display: -webkit-inline-box;
+}
+.hbs{
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+}
+.hobb_text{
+    text-align: center;
+    font-size: 85%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.hobbies{
+    margin: 20px;
+    display: -ms-inline-grid;
+}

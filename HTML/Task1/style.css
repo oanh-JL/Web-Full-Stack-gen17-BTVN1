@@ -1,0 +1,29 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.Menu{
+    background-color: #D5B0AC;
+    color: #402E2A;
+    text-align: center;
+    font-weight: bold;
+    
+}
+.Menu span{
+    width: 100px;
+    height: 30px;
+    display: inline-block;
+    line-height: 30px;
+}
+.Menu span:hover{
+    background-color: aqua;
+    color: azure;
+}
+.Menu.Menu_vertical{
+    margin-top: 30px;
+    width: 100px;
+}
+.Menu.Menu-vertical span{
+    display: block;
+    border-bottom: 1px solid white;
+}
