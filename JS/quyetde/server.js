@@ -26,6 +26,14 @@ app.get("/api/random",(req,res)=>{
     const randomQuestion=questions[Math.floor(Math.random()*questions.length)];
     res.send({question:randomQuestion});
 });
+app.get("/vote/:questionId",(req,res)=>{
+    const questionId=req.params.questionId;
+    const questions=JSON.parse(fs.readFileSync("./question.json",{encoding:"utf-8"}));
+    questions.forEach((question,index)=>{
+        if(question.id==questionId)
+            res.send({question});
+    });
+})
 app.get("/vote/:questionId/:vote",(req,res)=>{
     const questionId=req.params.questionId;
     const vote=req.params.vote;
